@@ -20,3 +20,12 @@ TODO
 ### Adding daily meals
 
 TODO
+
+# TODO
+- Create database -> find a nice name (nutrition.db??)
+- Create tables -> food and meals
+- finish insert functions in table and food
+- create code that combine data of tables
+- plot data
+    - food nutrients balance
+    - track of calories
