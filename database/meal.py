@@ -1,15 +1,15 @@
+import sqlite3
 from typing import List
-
-
-class Meal:
-    def __init__(self) -> "Meal":
-        self.date
-
+from settings import DATABASE_NAME
 
 class DailyMeal:
-    def __init__(self) -> "DailyMeal":
-        self.meals: List[Meal] = []
 
-    def add_meal(self, meal: Meal) -> None:
-        self.meals.append(meal)
+    @staticmethod
+    def add(data) -> None:
+        with sqlite3.connect(DATABASE_NAME) as conn:
+            c = conn.cursor()
+            # TODO find food_id before inserting
+            for d in data:
+                c.execute("INSERT INTO food VALUES (?, ?, ?)", d.values())
+                conn.commit()
 

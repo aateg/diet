@@ -1,34 +1,34 @@
 import sqlite3
 
+DATABASE_NAME = "nutrition.db"
+
 if __name__ == "__main__":
-    #  create databases
-    with sqlite3.connect("food.db") as conn:
+    with sqlite3.connect(DATABASE_NAME) as conn:
 
         c = conn.cursor()
         c.execute(
             """
             CREATE TABLE food (
-                name text,
-                calories integer,
-                base_weight integer
-            ) 
-            """
-        )
-
-        conn.commit()
-        c.fetchall()  # what is this for?
-
-    with sqlite3.connect("nutrition.db") as conn:
-
-        c = conn.cursor()
-        c.execute(
-            """
-            CREATE TABLE nutrition (
+                food_id integer PRIMARY KEY,
+                name text NOT NULL,
+                energy integer NOT NULL,
+                base_weight integer,
+                unit text,
+                fat real,
+                carbohydrates real,
+                sugar real,
+                protein real
+            ); 
+            
+            CREATE TABLE meals (
+                meal_id integer PRIMARY KEY,
                 date date,
-                time time,
-                food blob,
-                weight blob
-            ) 
+                time text,
+                food_id integer,
+                weight integer,
+                FOREIGN KEY (food_id)
+                    REFERENCES food (food_id)
+            ); 
             """
         )
 

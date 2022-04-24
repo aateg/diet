@@ -1,12 +1,16 @@
-from typing import Any, Dict
+import sqlite3
+from typing import Any, Dict, Tuple, List
+from settings import DATABASE_NAME
 
 
 class Food:
 
-    # TODO create constructor
-    def __init__(self) -> "Food":
-        pass
+    @staticmethod
+    def add(data: List[Dict[Any, Any]]) -> None:
+        
+        with sqlite3.connect(DATABASE_NAME) as conn:
+            c = conn.cursor()
+            for d in data:
+                c.execute("INSERT INTO food VALUES (?, ?, ?)", d.values())
+                conn.commit()
 
-    def get_data(self) -> Dict[Any, Any]:
-        # TODO return all attributes of this class as a dict
-        return {}

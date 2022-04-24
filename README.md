@@ -22,9 +22,7 @@ TODO
 TODO
 
 # TODO
-- Create database -> find a nice name (nutrition.db??)
-- Create tables -> food and meals
-- finish insert functions in table and food
+- consider using sqlalchemy
 - create code that combine data of tables
 - plot data
     - food nutrients balance
