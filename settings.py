@@ -1,6 +1,38 @@
 import sqlite3
+import pathlib
 
-DATABASE_NAME = "nutrition.db"
+from sqlalchemy import create_engine
+from sqlalchemy.orm import relationship
+from tables import Base, Food, Meal
+
+DATABASE_NAME = "diet.db"
+
+
+
+def create_tables(engine):
+
+    Food.meal = relationship("Meal", order_by = Meal.id, back_populates="food")
+    
+    Base.metadata.create_all(engine)
+
+def main():
+    if not (pathlib.Path(__file__) / DATABASE_NAME).is_file():
+        conn = sqlite3.connect(DATABASE_NAME)
+        conn.close()
+
+        engine = create_engine("sqlite:///" + DATABASE_NAME, echo=True)
+
+        create_tables(engine)
+
+
+if __name__ == "__main__":
+    main()
+
+
+    
+
+
+
 
 if __name__ == "__main__":
     with sqlite3.connect(DATABASE_NAME) as conn:
