@@ -5,6 +5,11 @@ This program is a simple nutrition tracker. It's designed to be used by people w
 ## Usage
 TODO
 
+# Next Steps
+- [ ] Insert data into database [1]
+- [ ] Create different meals and sum them up into a daily total [2]
+
+
 ## Cutting Diet
 
 - Protein 2g/kg
